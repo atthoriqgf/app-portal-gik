@@ -51,6 +51,7 @@ app.get('/home', keycloak.protect(), (req, res, next) => {
         embedded_params.name = details.name;
         embedded_params.email = details.email;
         embedded_params.username = details.preferred_username;
+        embedded_params.password = details.password;
     }
 
     res.render('home', {
@@ -74,6 +75,11 @@ app.get('/asset01/update', keycloak.enforcer(['asset-01:write'], {
     return res.status(200).end('success');
 });
 
+app.get('/apps/talent-gik-token', keycloak.protect(), (req, res) => {
+    const token = req.session['keycloak-token'];
+    res.json({ token });
+});
+
 app.use((req, res, next) => {
     return res.status(404).end('Not Found');
 });
@@ -82,7 +88,7 @@ app.use((err, req, res, next) => {
     return res.status(req.errorCode ? req.errorCode : 500).end(req.error ? req.error.toString() : 'Internal Server Error');
 });
 
-const server = app.listen(3000, '127.0.0.1', () => {
+const server = app.listen(5137, '127.0.0.1', () => {
     const host = server.address().address;
     const port = server.address().port;
 

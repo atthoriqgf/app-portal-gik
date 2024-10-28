@@ -1,26 +1,45 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Keycloak Example</title>
-	</head>
-	<body>
-		<h1>Home</h1>
-		<%
-		try {
-			if (user) {
-		%>
-				<p>Welcome <%= user.name %></p>
-				<p>Your email is: <%= user.email %></p>
-				<p>Your username is: <%= user.username %></p>
-			<% } else { %>
-				<p>User not found</p>
-			<% } %>
-		<%
-		} catch (e) {
-			console.error('Error: ', e);
-			%>
-				<p>Some error occurred</p>
-		<% } %>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <title>Keycloak Example</title>
+</head>
+<body>
+    <h1>Home</h1>
+    <% if (user) { %>
+        <p>Welcome <%= user.name %></p>
+        <p>Your email is: <%= user.email %></p>
+        <p>Your username is: <%= user.username %></p>
+        
+        <div>
+            <h2>Available Apps</h2>
+            <!-- Add a grid for the third-party apps -->
+            <div>
+							<a href="javascript:void(0);" onclick="goToTalentApp()">Talent App</a>
+                <!-- Add more apps here as needed -->
+            </div>
+        </div>
+    <% } else { %>
+        <p>User not found</p>
+    <% } %>
+</body>
+<script>
+	function goToTalentApp() {
+			fetch('/apps/talent-gik-token') // Backend route that returns the token
+					.then(response => response.json())
+					.then(data => {
+							const token = data.token;
+							const appUrl = 'https://talent.gikserver.com/login';
+							// Send the request with the token in the header
+							fetch(appUrl, {
+									method: 'GET',
+									headers: {
+											'Authorization': `Bearer ${token}`
+									}
+							}).then(() => {
+									// Optionally handle success or failure here
+							});
+					});
+	}
+</script>
 </html>

@@ -1,0 +1,39 @@
+{
+  "realm": "app-portal",
+  "auth-server-url": "http://localhost:8080/",
+  "ssl-required": "external",
+  "resource": "app-portal-client",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "FDnaab9mvBCxXA7ESwvtNeBNRvCFh5vg"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}
+
+{
+  "realm": "app-portal",
+  "auth-server-url": "https://keycloak.virtual.gikstaging.com",
+  "ssl-required": "external",
+  "resource": "app-portal-client",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "FDnaab9mvBCxXA7ESwvtNeBNRvCFh5vg"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}
+
+{
+  "realm": "app-portal",
+  "auth-server-url": "https://keycloak.virtual.gikstaging.com",
+  "ssl-required": "external",
+  "resource": "dotnet-client",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "lSzaIdj9qlNH9HpiOMZEePhTEQBlkBxP"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0,
+  "policy-enforcer": {}
+}

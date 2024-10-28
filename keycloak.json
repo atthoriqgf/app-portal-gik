@@ -1,12 +1,12 @@
 {
-  "realm": "my-product",
-  "auth-server-url": "http://192.168.0.107:8080/auth/",
+  "realm": "app-portal",
+  "auth-server-url": "https://keycloak.virtual.gikstaging.com",
   "ssl-required": "external",
-  "resource": "my-application",
+  "resource": "app-portal-client",
   "verify-token-audience": true,
   "credentials": {
-    "secret": "250bc9e9-9138-4424-bbaa-cf523cc71e39"
+    "secret": "FDnaab9mvBCxXA7ESwvtNeBNRvCFh5vg"
   },
-  "confidential-port": 0,
-  "policy-enforcer": {}
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
 }
